@@ -27,11 +27,20 @@ python join_dsets.py
 
 ```
 # without data augmentation
-python main.py --tr_percent 0.15 --dataset IP --verbose # without data augmentation
+python main.py --dataset IP --tr_percent 0.1 --verbose # without data augmentation
 
 # Hyperspectral Image Classification Using Random Occlusion Data Augmentation
-python main.py --p 0.25 --tr_percent 0.15 --dataset IP --verbose # with data augmentation
-python main.py --p 0.5 --tr_percent 0.15 --dataset IP --verbose # with data augmentation
+python main.py --dataset IP --tr_percent 0.1 --p 0.25 --verbose # with data augmentation
+python main.py --dataset IP --tr_percent 0.1 --p 0.50 --verbose # with data augmentation
 
+# Hyperspectral Image Classification Using Simple Dropout
+python main.py --dataset IP --tr_percent 0.1 --simple_dropout 0.2 --verbose
+python main.py --dataset IP --tr_percent 0.1 --simple_dropout 0.4 --verbose
+python main.py --dataset IP --tr_percent 0.1 --simple_dropout 0.8 --verbose
+
+# Hyperspectral Image Classification Using NDP
+python main.py --dataset IP --tr_percent 0.1 --dropprob 0.2 --verbose
+python main.py --dataset IP --tr_percent 0.1 --dropprob 0.4 --verbose
+python main.py --dataset IP --tr_percent 0.1 --dropprob 0.8 --verbose
 
 ```
