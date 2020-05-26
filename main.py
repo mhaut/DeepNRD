@@ -1,12 +1,11 @@
 
 import argparse
 import auxil
+from DA_HSI import ROhsi
 from hyper_pytorch import *
 import models
 import torch
-import torch.nn.parallel
 from torchvision.transforms import *
-from DA_HSI import ROhsi
 
 
 def load_hyper(args):
@@ -16,7 +15,7 @@ def load_hyper(args):
     x_train, x_test, y_train, y_test = auxil.split_data(pixels, labels, args.tr_percent)
     if args.use_val: x_val, x_test, y_val, y_test = auxil.split_data(x_test, y_test, args.val_percent)
     del pixels, labels
-    if args.p != 0: transform_train = ROhsi.RandomErasing(probability = args.p, sh = args.sh, r1 = args.r1,)
+    if args.p != 0: transform_train = ROhsi(probability = args.p, sh = args.sh, r1 = args.r1,)
     else: transform_train = None
     train_hyper = HyperData((np.transpose(x_train, (0, 3, 1, 2)).astype("float32"),y_train), transform_train)
     test_hyper  = HyperData((np.transpose(x_test, (0, 3, 1, 2)).astype("float32"),y_test), None)
